@@ -2,7 +2,18 @@ import java.util.Scanner;
 public class FactorialCalculator{
     public static void main(String[] args){
         Scanner input = new Scanner (System.in);
-        int number = 0;
+
+        int number = getNonNegativeInteger(input);
+
+        long factorial = calculateFactorial(number);
+
+        System.out.println("The factorial of " + number + " is: "+ factorial);
+
+        input.close();
+
+    }
+    public static int getNonNegativeInteger (Scanner input){
+        int number = -1;
         boolean validInput = false;
 
         while (!validInput){
@@ -13,21 +24,26 @@ public class FactorialCalculator{
                     validInput = true;
                 } else {
                 System.out.println("Invalid Input. Please enter a NonNegative Number");
-                input.next();
                 }
+            }else {
+                System.out.println("Invalid input. Please enter a valid integer. ");
+                input.next();
             }
         }
-        calculateFactorial(number);
+        return number;
     }
-    public static void calculateFactorial(int number){
-        long factorial = 1;
-        if (number == 0){
-            factorial = 1;
-        } else {
-            for (int i = 1; i <= number; ++ i){
-            factorial *= i;
-            } 
+    public static long calculateFactorial(int n){
+        if (n == 0) {
+            return 1; 
         }
-        System.out.println("The factorial of " + number + " is : " + factorial );
+
+        long factorial = 1;
+        for (int i = 1; i <= n; i++) {
+            factorial *= i; 
+        }
+
+        return factorial;
+        
     }
+    
 }
